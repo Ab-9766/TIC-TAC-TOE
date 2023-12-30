@@ -2,7 +2,6 @@ package Strategies.GameWinningStrategy;
 
 import Models.Board;
 import Models.Cell;
-import Models.Game;
 import Models.Player;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class Order1WinningStrategy implements GameWinningStrategy{
     private boolean isCellOnTopRightDiagonal(int row, int col,int dimension){
         return row + col == dimension -1;
     }
-    private boolean isCellOnTopLeftDiagonal(int row, int col){
+    private boolean isCellOnTopLeftDiagonal(int row, int col,int dimension){
         return row==col;
     }
 
@@ -42,27 +41,27 @@ public class Order1WinningStrategy implements GameWinningStrategy{
          if(!rowSymbolCount.get(row).containsKey(symbol)){
               rowSymbolCount.get(row).put(symbol,0);
          }
-         rowSymbolCount.get(row).put(symbol, rowSymbolCount.get(row).get(symbol)+1);
+         rowSymbolCount.get(row).put(symbol, rowSymbolCount.get(row).get(symbol)+ 1);
 
-        if(!rowSymbolCount.get(col).containsKey(symbol)){
-            rowSymbolCount.get(col).put(symbol,0);
+        if(!colSymbolCount.get(col).containsKey(symbol)){
+            colSymbolCount.get(col).put(symbol,0);
         }
-        rowSymbolCount.get(col).put(symbol, rowSymbolCount.get(col).get(symbol)+1);
+        colSymbolCount.get(col).put(symbol, colSymbolCount.get(col).get(symbol)+1);
 
         if(isCellOnTopRightDiagonal(row,col,dimension))
         {
-            if(topRightDiagonalSymbolCount.containsKey(symbol)){
+            if(!topRightDiagonalSymbolCount.containsKey(symbol)){
                 topRightDiagonalSymbolCount.put(symbol,0);
             }
             topRightDiagonalSymbolCount.put(symbol, topRightDiagonalSymbolCount.get(symbol)+1);
 
         }
-        if(isCellOnTopLeftDiagonal(row,col))
+        if(isCellOnTopLeftDiagonal(row,col,dimension))
         {
-            if(topLeftDiagonalSymbolCount.containsKey(symbol)){
+            if(!topLeftDiagonalSymbolCount.containsKey(symbol)){
                 topLeftDiagonalSymbolCount.put(symbol,0);
             }
-            topLeftDiagonalSymbolCount.put(symbol, topLeftDiagonalSymbolCount.get(symbol)+1);
+            topLeftDiagonalSymbolCount.put(symbol, topLeftDiagonalSymbolCount.get(symbol)+ 1);
 
         }
         //Checking the winner
@@ -70,7 +69,7 @@ public class Order1WinningStrategy implements GameWinningStrategy{
             return true;
         }
 
-        if(isCellOnTopLeftDiagonal(row,col) && topLeftDiagonalSymbolCount.get(symbol)==dimension){
+        if(isCellOnTopLeftDiagonal(row,col,dimension) && topLeftDiagonalSymbolCount.get(symbol)==dimension){
             return true;
         }
         if(isCellOnTopRightDiagonal(row,col,dimension) && topRightDiagonalSymbolCount.get(symbol)==dimension){

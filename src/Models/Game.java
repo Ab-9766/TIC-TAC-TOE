@@ -85,7 +85,7 @@ public class Game {
     public void makeNextMove()
     {
         Player playerToMove= players.get(nextPlayerIndex);
-        System.out.println("It is" + playerToMove.getName() + "'s turn");
+        System.out.println("It is " + playerToMove.getName() + "'s turn");
 
         Move move= playerToMove.decideMove(this.board);
 

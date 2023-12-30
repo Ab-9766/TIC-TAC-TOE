@@ -14,13 +14,14 @@ public class TicTacToeGame {
         System.out.println("Enter the dimension of the game: ");
 
         int dimension = scanner.nextInt();
-        System.out.println("Will there be any boy? Y/N");
+        System.out.println("Will there be any bot? Y/N");
 
         String isBot = scanner.next();
         List<Player> players = new ArrayList<>();
 
         int noOfHumanPlayers = dimension - 1;
-        if (isBot.equals("Y")) noOfHumanPlayers -= 1;
+        if (isBot.equals("Y")) {
+            noOfHumanPlayers =noOfHumanPlayers - 1;
 
         System.out.println("Enter the name of the bot:");
         String botName = scanner.next();
@@ -28,9 +29,12 @@ public class TicTacToeGame {
         System.out.println("What is the symbol of the bot:");
         String botSymbol = scanner.next();
 
+        //String difficultyLevel= scanner.next();
+
         //Get the bot difficulty level
 
         players.add(new Bot(botSymbol.charAt(0), botName, PlayerType.BOT, BotDifficultyLevel.EASY));
+        }
 
         for (int i = 0; i < noOfHumanPlayers; i++) {
             System.out.println("What is the name of the player" + (i + 1));

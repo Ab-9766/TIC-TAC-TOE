@@ -11,8 +11,8 @@ public class GameController {
     public Game createGame(int dimension, List<Player> players){
         try {
             return Game.getBuilder().setDimension(dimension).setPlayers(players).build();
-        } catch (InvalidGameBuildException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            return null;
         }
     }
     public void undo(Game game){
