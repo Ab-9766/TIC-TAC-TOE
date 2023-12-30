@@ -26,6 +26,7 @@ public class GameController {
 
     }
     public void executeNextMove(Game game){
+        game.makeNextMove();
 
     }
     public GameStatus getGameStatus(Game game){
